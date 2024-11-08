@@ -4,4 +4,21 @@
 
 Main page
 
+{% for info in information %}
+<br>{{ info }}
+{% endfor %}
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu">
+    {% for info in information %}
+      <li>{{ info }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+
 {% endblock content %}
