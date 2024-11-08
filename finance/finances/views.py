@@ -18,4 +18,7 @@ def index(request):
         {"label": "mango", "y": 30},
         {"label": "grape", "y": 28}
     ]
-    return render(request, 'index.html', {"data_points": data_points})
+
+    label = ['apple', 'orange', 'banana', 'mango', 'grape']
+    y = [10, 15, 25, 30, 28]
+    return render(request, 'index.html', {"data_points": data_points, 'label': label, 'y': y})
