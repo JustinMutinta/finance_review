@@ -3,11 +3,17 @@ from django.shortcuts import render
 # Create your views here.
 information = ["one", 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
-
+finance_data = {"2024":{"bills": 2000, "food": 100, "pay": 2100},
+                "2023":{"bills": 2000, "food": 200, "pay": 2100},
+                "2022":{"bills": 2000, "food": 300, "pay": 2100},
+                "2021":{"bills": 2000, "food": 400, "pay": 2100},
+                "2020":{"bills": 2000, "food": 500, "pay": 2100},
+                "2019":{"bills": 2000, "food": 600, "pay": 2100}
+                }
 
 
 def home(request):
-    return render(request, 'home.html', {'information': information})
+    return render(request, 'home.html', {'information': finance_data})
 
 
 def index(request):
