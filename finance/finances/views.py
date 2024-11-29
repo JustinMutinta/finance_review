@@ -18,10 +18,10 @@ def home(request):
 
 
 def year(request, pk):
-    return HttpResponse('SINGLE YEAR')
+    return render(request, 'year.html', {'pk': pk})
 
 def expense(request, pk):
-    return HttpResponse('SINGLE EXPENSE')
+    return render(request, 'expense.html', {'pk': pk})
 
 def index(request):
     data_points = [
