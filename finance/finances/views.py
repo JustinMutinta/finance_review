@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 information = ["one", 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
@@ -15,6 +16,12 @@ finance_data = {"2024":{"bills": 2000, "food": 100, "pay": 2100},
 def home(request):
     return render(request, 'home.html', {'information': finance_data})
 
+
+def year(request, pk):
+    return render(request, 'year.html', {'pk': pk})
+
+def expense(request, pk):
+    return render(request, 'expense.html', {'pk': pk})
 
 def index(request):
     data_points = [

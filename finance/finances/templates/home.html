@@ -5,12 +5,15 @@
 Main page
 
 {% for key, value in information.items %}
-<br><a class="nav-link" href="">{{ key }}</a>
-{{ value.food }}
+<br><a class="nav-link" href="{% url 'year' key %}">{{ key }}</a>
+    {% for singleItem, cost in value.items %}
+        {% if singleItem == 'pay' %}
+            <a class="nav-link" href="{% url 'expense' singleItem %}">You received {{ singleItem }} in the amount of: ${{ cost }}</a>
+        {% else %}
+            <a class="nav-link" href="{% url 'expense' singleItem %}">You spent this much in {{ singleItem }}: ${{ cost }}</a>
+        {% endif %}
+    {% endfor%}
 {% endfor %}
-
-
-
 
 
 
