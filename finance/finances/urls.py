@@ -7,4 +7,5 @@ urlpatterns = [
     path('year/<str:pk>', views.year, name='year'),
     path('expense/<str:pk>', views.expense, name='expense'),
     path('index', views.index, name='index'),
+
 ]
