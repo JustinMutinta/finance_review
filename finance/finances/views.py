@@ -44,7 +44,14 @@ def year(request, pk):
 def month(request, year, month):
     expense_axis = []
     cost_axis = []
-    return render(request, 'month.html', {'year': year, 'month': month})
+    for item in finance_data_2[year][month]:
+        expense_axis.append(item)
+        cost_axis.append(finance_data_2[year][month][item])
+
+    return render(request, 'month.html', {'year': year,
+                                          'month': month,
+                                          'expense_axis': expense_axis,
+                                          'cost_axis': cost_axis})
 
 def expense(request, pk):
     return render(request, 'expense.html', {'pk': pk})

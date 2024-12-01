@@ -1,13 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>{{ year }}</h1>
+<h3>{{ month }}</h3>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
 
-Month page
-
-{{ year }}
-
-{{ month }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
+
+<div>
+  <script>
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{expense_axis|safe}},
+      datasets: [{
+        label: 'Costs',
+        data: {{cost_axis|safe}},
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  </script>
+</div>
 
 {% endblock content %}
