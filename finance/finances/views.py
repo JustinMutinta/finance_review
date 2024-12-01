@@ -4,18 +4,35 @@ from django.http import HttpResponse
 # Create your views here.
 information = ["one", 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
-finance_data = {"2024":{"bills": 2000, "food": 100, "pay": 2100},
-                "2023":{"bills": 2000, "food": 200, "pay": 2100},
-                "2022":{"bills": 2000, "food": 300, "pay": 2100},
-                "2021":{"bills": 2000, "food": 400, "pay": 2100},
-                "2020":{"bills": 2000, "food": 500, "pay": 2100},
-                "2019":{"bills": 2000, "food": 600, "pay": 2100}
-                }
+
+finance_data_2 = {
+    "2024":{
+        "January": {
+            "bills": 3000, "food": 1000, "pay": 2000
+        },
+        "February": {
+            "bills": 2000, "food": 2000, "pay": 3000
+        },
+        "March": {
+            "bills": 1000, "food": 3000, "pay": 4000
+        }
+    },
+    "2023":{
+        "January": {
+            "bills": 7000, "food": 4000, "pay": 5000
+        },
+        "February": {
+            "bills": 6000, "food": 5000, "pay": 6000
+        },
+        "March": {
+            "bills": 5000, "food": 6000, "pay": 7000
+        }
+    }
+}
 
 
 def home(request):
-    return render(request, 'home.html', {'information': finance_data})
-
+    return render(request, 'home.html', {'information': finance_data_2})
 
 def year(request, pk):
     return render(request, 'year.html', {'pk': pk})

@@ -10,10 +10,9 @@
       {% for month, breakdown in valueInYear.items %}
           <ul class="list-group list-group-flush">
             <div class="card-header"><h4>{{ month }}</h4></div>
+
             {% for expenseType, cost in breakdown.items %}
-              <li class="list-group-item">
-                  <a class="nav-link" href="{% url 'expense' expenseType %}">{{ expenseType }}</a> --- ${{ cost }}
-              </li>
+              <li class="list-group-item">{{ expenseType }} --- {{ cost }}</li>
             {% endfor %}
           </ul>
       {% endfor%}
