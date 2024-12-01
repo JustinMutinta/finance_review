@@ -35,7 +35,16 @@ def home(request):
     return render(request, 'home.html', {'information': finance_data_2})
 
 def year(request, pk):
-    return render(request, 'year.html', {'pk': pk})
+    expense_axis = []
+    cost_axis = []
+    expense_axis = finance_data_2[pk]
+
+    return render(request, 'year.html', {'pk': pk, 'expense_axis': expense_axis})
+
+def month(request, year, month):
+    expense_axis = []
+    cost_axis = []
+    return render(request, 'month.html', {'year': year, 'month': month})
 
 def expense(request, pk):
     return render(request, 'expense.html', {'pk': pk})
