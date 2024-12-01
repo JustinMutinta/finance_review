@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-Year page
+Year page <br>
 
-{{ pk }}
+{{ pk }} <br>
 
 {{ expense_axis }}
 
-<!--<div>-->
-<!--    {% for month, breakdown in expense_axis.items %}-->
-<!--    {% endfor %}-->
-<!--</div>-->
+<div>
+    {% for month, breakdown in expense_axis.items %}
+        month >>> {{ month }} <br>
+        {{ breakdown }} <br>
+        {% for item, cost in breakdown.items%}
+            {{ item }} --- {{cost}}----<br>
+        {% endfor %}
+    <br>
+    {% endfor %}
+</div>
 
 {% endblock content %}
