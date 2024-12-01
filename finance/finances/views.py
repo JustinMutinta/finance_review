@@ -2,10 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-information = ["one", 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
-
-finance_data_2 = {
+finance_data = {
     "2024":{
         "January": {
             "bills": 3000, "food": 1000, "pay": 2000
@@ -32,21 +30,21 @@ finance_data_2 = {
 
 
 def home(request):
-    return render(request, 'home.html', {'information': finance_data_2})
+    return render(request, 'home.html', {'information': finance_data})
 
 def year(request, pk):
     expense_axis = []
     cost_axis = []
-    expense_axis = finance_data_2[pk]
+    expense_axis = finance_data[pk]
 
     return render(request, 'year.html', {'pk': pk, 'expense_axis': expense_axis})
 
 def month(request, year, month):
     expense_axis = []
     cost_axis = []
-    for item in finance_data_2[year][month]:
+    for item in finance_data[year][month]:
         expense_axis.append(item)
-        cost_axis.append(finance_data_2[year][month][item])
+        cost_axis.append(finance_data[year][month][item])
 
     return render(request, 'month.html', {'year': year,
                                           'month': month,
