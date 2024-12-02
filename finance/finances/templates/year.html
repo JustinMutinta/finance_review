@@ -5,17 +5,53 @@ Year page <br>
 
 {{ pk }} <br>
 
-{{ expense_axis }}
+{{ expense_axis }} <br>
+
+{{ cost_axis }}
 
 <div>
     {% for month, breakdown in expense_axis.items %}
-        month >>> {{ month }} <br>
-        {{ breakdown }} <br>
-        {% for item, cost in breakdown.items%}
-            {{ item }} --- {{cost}}----<br>
+        this is the month >>> {{ month }} <br>
+        this is the breakdown {{ breakdown }} <br>
+        {% for item in breakdown %}
+            printing the items
+            {{ item }} --- ----<br>
         {% endfor %}
     <br>
     {% endfor %}
 </div>
+
+
+<div>  <canvas id="myChart"></canvas> </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    {% for month, breakdown in expense_axis.items %}
+        this is the graph month --> {{ month }}
+    <div>
+        <script>
+            const ctx = document.getElementById('myChart');
+            new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: {{expense_axis|safe}},
+              datasets: [{
+                label: 'Costs',
+                data: {{cost_axis|safe}},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+      </script>
+    </div>
+    {% endfor %}
+
 
 {% endblock content %}

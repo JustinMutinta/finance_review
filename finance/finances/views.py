@@ -33,11 +33,25 @@ def home(request):
     return render(request, 'home.html', {'information': finance_data})
 
 def year(request, pk):
-    expense_axis = []
-    cost_axis = []
-    expense_axis = finance_data[pk]
+    expense_axis = {}
+    cost_axis = {}
+    # expense_axis = finance_data[pk]
+    for month in finance_data[pk]:
+        temp_key = []
+        temp_value = []
+        # expense_axis[month] = [finance_data[pk][month].keys()]
+        # cost_axis[month] = finance_data[pk][month].values()
+        for key, value in finance_data[pk][month].items():
+            temp_key.append(key)
+            temp_value.append(value)
+        expense_axis[month] = temp_key
+        cost_axis[month] = temp_value
+        # for expense in month:
+        #     expense_axis[month].append(finance_data[pk][month])
 
-    return render(request, 'year.html', {'pk': pk, 'expense_axis': expense_axis})
+    return render(request, 'year.html', {'pk': pk,
+                                         'expense_axis': expense_axis,
+                                         'cost_axis': cost_axis})
 
 def month(request, year, month):
     expense_axis = []
