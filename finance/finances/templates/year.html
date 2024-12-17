@@ -5,17 +5,22 @@ Year page <br>
 
 {{ pk }} <br>
 
-{{ expense_axis }} <br>
+This is the expense_axis {{ expense_axis }} <br>
 
-{{ cost_axis }}
+{{ expense_axis.2024.February.name }} <br>
+{{ expense_axis.2024.February.cost }}
+<br><br>
 
 <div>
-    {% for month, breakdown in expense_axis.items %}
-        this is the month >>> {{ month }} <br>
+    {% for year, breakdown in expense_axis.items %}
+        this is the year >>> {{ year }} <br>
         this is the breakdown {{ breakdown }} <br>
-        {% for item in breakdown %}
-            printing the items
-            {{ item }} --- ----<br>
+        {% for month, breakdown2 in breakdown.items %}
+            This is the month ---- {{ month }} <br>
+            This is the breakdown2 ----- {{ breakdown2 }} <br>
+            {% for name, amount in breakdown2.items %}
+                {{ name }} ----- {{ amount }} <br>
+            {% endfor%}
         {% endfor %}
     <br>
     {% endfor %}
@@ -25,33 +30,37 @@ Year page <br>
 <div>  <canvas id="myChart"></canvas> </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
-    {% for month, breakdown in expense_axis.items %}
-        this is the graph month --> {{ month }}
-    <div>
-        <script>
-            const ctx = document.getElementById('myChart');
-            new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: {{expense_axis|safe}},
-              datasets: [{
-                label: 'Costs',
-                data: {{cost_axis|safe}},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-      </script>
-    </div>
-    {% endfor %}
+<script>
+<!--var xValues = ["Italy", "France"];-->
+<!--var yValues = [55, 49];-->
+
+var xValues = [];
+xValues.push("one", "two");
+
+var yValues = [55, 49];
+
+var barColors = ["#b91d47","#00aba9"];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "World Wide Wine Production 2018"
+    }
+  }
+});
+</script>
+
 
 
 {% endblock content %}
