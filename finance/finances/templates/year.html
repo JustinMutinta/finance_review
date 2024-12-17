@@ -30,37 +30,58 @@ This is the expense_axis {{ expense_axis }} <br>
 <div>  <canvas id="myChart"></canvas> </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="myChart" style="width:50%;max-width:100px"></canvas>
 
-<script>
-<!--var xValues = ["Italy", "France"];-->
+<!--<script>-->
+<!--&lt;!&ndash;var xValues = ["Italy", "France"];&ndash;&gt;-->
+<!--&lt;!&ndash;var yValues = [55, 49];&ndash;&gt;-->
+
+<!--var xValues = [];-->
+<!--xValues.push("one", "two");-->
+
 <!--var yValues = [55, 49];-->
+<!--var barColors = ["#b91d47","#00aba9"];-->
 
-var xValues = [];
-xValues.push("one", "two");
+<!--new Chart("myChart", {-->
+<!--  type: "pie",-->
+<!--  data: {-->
+<!--    labels: xValues,-->
+<!--    datasets: [{-->
+<!--      backgroundColor: barColors,-->
+<!--      data: yValues-->
+<!--    }]-->
+<!--  },-->
+<!--  options: {-->
+<!--    title: {-->
+<!--      display: true,-->
+<!--      text: "World Wide Wine Production 2018"-->
+<!--    }-->
+<!--  }-->
+<!--});-->
+<!--</script>-->
 
-var yValues = [55, 49];
-
-var barColors = ["#b91d47","#00aba9"];
-
-new Chart("myChart", {
-  type: "pie",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: barColors,
-      data: yValues
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "World Wide Wine Production 2018"
+<div>
+  <script>
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: {{ expense_axis.2024.February.name|safe }},
+      datasets: [{
+        label: 'Costs',
+        data: {{ expense_axis.2024.February.cost|safe }},
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
     }
-  }
-});
-</script>
-
-
+  });
+  </script>
+</div>
 
 {% endblock content %}

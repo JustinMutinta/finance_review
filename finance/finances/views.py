@@ -35,7 +35,7 @@ def home(request):
 def year(request, pk):
     expense_axis = {
         "2024": { "January" : { "income": 5000, "outcome": 2000 },
-                  "February" : { "name" : {"income", "outcome"}, "cost": {5000, 3000} }
+                  "February" : { "name" : ["income", "outcome"], "cost": [5000, 3000] }
         },
         "2023": { "February" : {"income": 6000, "outcome": 3000 } }
     }
